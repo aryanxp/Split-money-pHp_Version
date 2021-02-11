@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<link rel="alternate" hreflang="x-default" href="index.html" />
+<link rel="alternate" hreflang="en" href="en.html" />
+<link rel="alternate" hreflang="de" href="de.html" />
+<link rel="alternate" hreflang="it" href="it.html" />
+<title>MoneySplit</title>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style type="text/css">
+	body{ font: 14px sans-serif; text-align: center; }
+	.section-nav {
+		padding-bottom: 0;
+		border-radius: none;
+		box-shadow: none;
+		background-color: #141c31;
+		flex 0 0 50px;
+	}
+</style>
+    <script type="text/javascript">
+	function change(what){
+	$('#scroll').fadeOut();
+	var current = document.getElementById("count").value;
+	var current = parseInt(current);
+	if(what == "u"){
+		if (current > 1 && current < 40) {
+		var neu = current+1;
+		document.getElementById("count").value= neu;
+		}
+		}
+	else {
+		if (current > 2 && current < 41) {
+		var neu = (current)-1;
+		document.getElementById("count").value= neu;
+		}
+		}
+	}
+	$(document).on('focus', '#text', function() {
+		$('#scroll').fadeOut();
+	});
+	$(window).scroll(function() {
+
+		if ($(this).scrollTop()>0)
+		{
+			$('#scroll').fadeOut();
+		}
+		
+	});
+	$("document").ready(function(){
+
+		$(document).on('click', '.cookieclose', function() {
+		$('#cookiestart').remove();
+			});
+
+	$("select").selectpicker({style: 'btn-hg btn-info', menuStyle: 'dropdown-inverse'});
+
+	$.fn.pressEnter = function(func) {
+		this.bind('keypress', function(e) {
+			if(e.keyCode === 13) {
+				func.apply(this, [e]);
+			}
+		});
+		return this;
+	};
+
+	$('input[type="text"]').pressEnter(function(e) {
+		e.preventDefault();
+		$('.action').submit();
+	});
+
+	});
+	</script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+	<link href="stylefba0.css?v=1527233455" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/customfont.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<div class="page-header section-nav row">
+<h1> Welcome to <strong>Split-Money</strong></h1>
+</div>
+<script>
+   var gaProperty = 'UA-55249825-1'; 
+   var disableStr = 'ga-disable-' + gaProperty; 
+   if (document.cookie.indexOf(disableStr + '=true') > -1) { 
+        window[disableStr] = true;
+    } 
+    function gaOptout() { 
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; 
+        window[disableStr] = true; 
+        alert('Das Tracking ist jetzt deaktiviert'); 
+   } 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55249825-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+
+</script>
+<div id="wrap">
+<div class="container" id="container">
+<div id="claim"><h1>SplitMoney for just a indivisual.<br>Enter the amount you want to split equally between every person of group.</h1></div>
+<a href="../welcome.php">< back</a>
+<div id="startform">
+	<form class="action" name="action" action="#" method="post">
+		</div>
+		<a name="top"></a><a href="#top"><div class="topcallstart"><i class="icon-doc-new"></i> Start new calculation</div></a>
+		<div id="gobox">
+			How many people are in your group?<br />
+			<div id="countw">
+				<div id="down">
+				<input value="-" type="button" onclick="change('d')" class="btn btn-hg btn-info"/>
+				</div>
+				<div id="countw2">
+					<div class="form-group">
+						<div class="input-group">
+						<span class="input-group-addon"><span class="input-icon fui-user"></span></span> <input type="number" min="2" max="40" step="1" name="p" value="3" id="count" class="form-control input-hg">
+				</div></div></div>
+				<div id="up">
+				<input value="+" type="button" onclick="change('u')" class="btn btn-hg btn-info"/>
+				</div>
+			</div>
+			<input type="hidden" value="none" name="o" />
+			<br />
+			What amount you want to split?<br />
+			<input maxlength="40" type="text" id="amount" name="name" class="form-control"/>
+			<br />
+            <input value="Go!" id="go" class="btn btn-hg btn-success" type="submit" onclick="calculate1()">
+            <h2 id="answer"></h2>
+            </div></form>
+            <script>
+                function calculate1(){
+                    var amount = document.getElementById('amount').value;
+                    var nom = document.getElementById('count').value;
+
+                    var result = parseFloat(amount)/parseFloat(nom);
+                    
+                    if(!isNaN(result))
+                    {
+                        document.getElementById('Answer').innerHTML = "The amount will be"+result;
+                    }
+                }
+            </script>
+</body>
+</html>

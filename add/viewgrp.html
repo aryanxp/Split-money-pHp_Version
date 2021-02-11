@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>europe</title>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="https://billzer.com/css/customfont.css">
+<link rel="stylesheet" href="https://billzer.com/css/animation.css">
+<script src="https://billzer.com/js/flatui-checkbox.js"></script>
+<script type="text/javascript">
+$("document").ready(function(){
+	
+	$('.tooltyp').tooltipster({
+   animation: 'fade',
+   timer: 6000,
+   theme: 'tooltipster-light',
+   maxWidth: 150,
+   touchDevices: false,
+   offsetY: -20
+});
+	
+	
+				$('.tooltypcopy').tooltipster({
+   animation: 'grow',
+   timer: 3000,
+   theme: 'tooltipster-shadow',
+   maxWidth: 150,
+   touchDevices: false,
+   offsetY: -20,
+   trigger: 'click'
+});
+	
+	
+	
+	if('ontouchstart' in document.documentElement) $('html').addClass('touch');
+	
+	(function ($) {
+ 
+     $.fn.serialize = function (options) {
+         return $.param(this.serializeArray(options));
+     };
+ 
+     $.fn.serializeArray = function (options) {
+         var o = $.extend({
+         checkboxesAsBools: false
+     }, options || {});
+ 
+     var rselectTextarea = /select|textarea/i;
+     var rinput = /text|hidden|number|password|search/i;
+ 
+     return this.map(function () {
+         return this.elements ? $.makeArray(this.elements) : this;
+     })
+     .filter(function () {
+         return this.name && !this.disabled &&
+             (this.checked
+             || (o.checkboxesAsBools && this.type === 'checkbox')
+             || rselectTextarea.test(this.nodeName)
+             || rinput.test(this.type));
+         })
+         .map(function (i, elem) {
+             var val = $(this).val();
+	     
+	     if ($(this).hasClass('price')) {
+		val = val.replace(',', '.');
+             val = parseFloat( ('0' + val).replace(/[^0-9-\.]/g, ''), 10 );
+	     val = val.toFixed(2);
+	     }
+	     
+	     
+	     return val == null ?
+             null :
+             $.isArray(val) ?
+             $.map(val, function (val, i) {
+                 return { name: elem.name, value: val };
+             }) :
+             {
+                 name: elem.name,
+                 value: (o.checkboxesAsBools && this.type === 'checkbox') ?
+                        (this.checked ? 'true' : 'false') :
+                        val
+             };
+         }).get();
+     };
+ 
+})(jQuery);
+
+	
+	var unsaved = false;
+	
+	$(document).on('mousedown', '.checkbox', function() {
+	
+		
+			$( ".initialresult" ).remove();
+			$( ".initialwarning" ).remove();
+			$( ".sharebox" ).remove();
+			$("#thebutton").css("visibility","visible");
+			$( ".ergi" ).remove();
+			unsaved = true;
+			$( ".changed" ).remove();
+			
+			$( ".savediv2wrap" ).remove();
+			$( ".savediv" ).fadeOut();
+			
+			$('<div class="savediv2wrap"><a href="#" onClick="$(\'#savebutton\').savebutton()"><div class="savediv2"><span class="save2">Unsaved changes. Hit the calculate button below or click here.</span></div></a></div>').appendTo($('#headers'));
+
+			$( ".error" ).remove();
+			$('.the-return').append('<div class="changed"><h1></h1> <br /> </div>');
+			$("#thebutton").attr('class', 'btn btn-hg btn-info');
+			$("#thebutton").attr('value', 'Calculate & Save!');
+			sticky_relocate();
+			sticky_relocatesave();
+		
+		});
+	
+	
+	/*Sum function for users*/
+$.fn.sumValues = function() {
+	var sum = 0; 
+	this.each(function() {
+		if ( $(this).is(':input') ) {
+			var val = $(this).val();
+		} else {
+			var val = $(this).text();
+		}
+		val = val.replace(',', '.');
+		sum += parseFloat( ('0' + val).replace(/[^0-9-\.]/g, ''), 10 );
+		sum = +sum.toFixed(2);		
+	});
+		    $( ".initialresult" ).remove();
+			$( ".initialwarning" ).remove();
+			$( ".sharebox" ).remove();
+			$("#thebutton").css("visibility","visible");
+			$( ".ergi" ).remove();
+			unsaved = true;
+			$( ".changed" ).remove();
+			$( ".savediv2wrap" ).remove();
+			$( ".savediv" ).fadeOut();
+			$('<div class="savediv2wrap"><a href="#" onClick="$(\'#savebutton\').savebutton()"><div class="savediv2"><span class="save2">Unsaved changes. Hit the calculate button below or click here.</span></div></a></div>').appendTo($('#headers'));
+			$( ".error" ).remove();
+			$('.the-return').append('<div class="changed"><h1></h1> <br /> </div>');
+			$("#thebutton").attr('class', 'btn btn-hg btn-info');
+			$("#thebutton").attr('value', 'Calculate & Save!');
+			sticky_relocate();
+			sticky_relocatesave();
+	return sum;
+};
+
+
+	var tooltypshown = false;
+	$(document).on('focus', 'input.price, input.was', function() {
+		
+		if (tooltypshown) {
+		} else {
+		
+		var id = $(this).attr('id');
+		var par = id.substr(1);
+		 $('#ct'+par).tooltipster('show');
+		 tooltypshown = true;
+		
+		 }
+	});
+	
+	/*Sum function on keydown or change for users*/	
+	$(document).on('keyup', 'input.price, input.was, input.name', function() {
+		
+		
+		var id = $(this).attr('id');
+			var par = id.substring(id.indexOf("u"));
+		var currentsum = $('.'+par+' input.price').sumValues();
+		$('.'+par+' .totalwrap .total').val(currentsum);
+		$('.'+par+' .totalwrap .total').html(currentsum);
+	});
+	
+	var prevcode = 0;
+		$(document).on('keyup', 'input.price', function(e) {
+		
+		
+		var code = (e.keyCode || e.which);
+		var id = $(this).attr('id');
+		
+		if ($(this).val() == "") {
+		 if (code == 188 || code == 190 || code == 8 || code == 9 || code == 13) {
+		
+		if (prevcode == 188 || prevcode == 190) {
+			alert("Please enter numbers correctly: 1234.56 (for numbers with decimals) or 1234 (for numbers without decimals)");
+		}
+		}
+		else {
+			alert("Please enter numbers correctly: 1234.56 (for numbers with decimals) or 1234 (for numbers without decimals)");
+			
+		}
+		}
+		 prevcode = code;		
+	});
+	
+	
+	$(document).on('blur', 'input.price', function() {
+		if ($(this).val() == "") {
+		var id = $(this).attr('id');
+		if (prevcode == 188 || prevcode == 190) {
+			alert("Please enter numbers correctly: 1234.56 (for numbers with decimals) or 1234 (for numbers without decimals)");
+		}
+		
+		
+	
+		}
+				
+	});			
+		
+	
+	$(document).on('change', 'input.price', function() {
+		
+		
+		var id = $(this).attr('id');
+			var par = id.substring(id.indexOf("u"));
+		var currentsum = $('.'+par+' input.price').sumValues();
+		$('.'+par+' .totalwrap .total').val(currentsum);
+		$('.'+par+' .totalwrap .total').html(currentsum);
+	});
+	
+	
+			
+	$(document).on('keyup', 'input.name', function() {
+		
+		
+		var name = $(this).attr('name');
+		var value = $(this).val();
+		$('.label'+name).html(value);
+	});
+	
+	
+	
+	
+
+
+$(function() {
+		var pn = 1;
+        $(document).on('click', '#addScntuser0, #addScntuser1, #addScntuser2', function() {
+			
+			
+			var id = $(this).attr('id');
+			var scntDiv = "." + id.substring(id.indexOf("u"));
+			var scntDivs = id.substring(id.indexOf("u"));
+			var i = $(scntDiv).size() + 1;
+						 console.log(scntDiv);
+			$('<div class="inputwrap" id="'+ pn + scntDivs +'"><div class="waswrap"><input name="w'+ pn + scntDivs +'" class="form-control was" id="w'+pn + scntDivs +'" type="text" placeholder="What?"/></div><div class="pricewrap"><input type="number" min="0" step="0.01" class="form-control price" id="p'+pn + scntDivs +'" name="p'+pn + scntDivs +'" placeholder="How much?" /></div><a href="#"><div id="'+pn + scntDivs +'" class="minus remScnt'+ scntDivs +'">&#195;</div></a><a href="#"><div id="ct'+pn+scntDivs +'" class="checktoggle tooltyp" title="Click here to exclude persons from this expense.">&#161;</div></a><div class="checks" id="ect'+pn+scntDivs+'">Who shares this expense?<label class="checkbox" for="c'+pn+'v0'+scntDivs+'"><input type="checkbox" checked id="c'+pn+'v0'+scntDivs+'" name="c'+pn+'v0'+scntDivs+'" data-toggle="checkbox"><span class="labeln0">'+$('#nuser0').val()+'</span></label><label class="checkbox" for="c'+pn+'v1'+scntDivs+'"><input type="checkbox" checked id="c'+pn+'v1'+scntDivs+'" name="c'+pn+'v1'+scntDivs+'" data-toggle="checkbox"><span class="labeln1">'+$('#nuser1').val()+'</span></label><label class="checkbox" for="c'+pn+'v2'+scntDivs+'"><input type="checkbox" checked id="c'+pn+'v2'+scntDivs+'" name="c'+pn+'v2'+scntDivs+'" data-toggle="checkbox"><span class="labeln2">'+$('#nuser2').val()+'</span></label></div></div>').insertBefore(scntDiv+' .bef');        
+	       $('.tooltyp').tooltipster({
+   animation: 'fade',
+   timer: 6000,
+   theme: 'tooltipster-light',
+   touchDevices: false,
+   maxWidth: 150,
+   offsetY: -20
+});
+		/* checkbox activation */
+		
+		$('#c'+ pn +'v0'+ scntDivs).checkbox('check'); $('#c'+ pn +'v1'+ scntDivs).checkbox('check'); $('#c'+ pn +'v2'+ scntDivs).checkbox('check'); 		
+		i++;
+		pn++;
+			
+		var currentsum = $(scntDiv+' input.price').sumValues();
+		$(scntDiv+' .totalwrap .total').val(currentsum);
+		$(scntDiv+' .totalwrap .total').html(currentsum);
+				
+						
+				
+				
+                return false;
+        });
+	
+	
+
+	/*ajax request*/
+	
+	
+	$(".calc").submit(function(){
+	
+	$('#loader').show();
+	var currentsumuser0 = $('.user0 input.price').sumValues(); $('.user0 .totalwrap .total').val(currentsumuser0);
+	$('.user0 .totalwrap .total').html(currentsumuser0);var currentsumuser1 = $('.user1 input.price').sumValues(); $('.user1 .totalwrap .total').val(currentsumuser1);
+	$('.user1 .totalwrap .total').html(currentsumuser1);var currentsumuser2 = $('.user2 input.price').sumValues(); $('.user2 .totalwrap .total').val(currentsumuser2);
+	$('.user2 .totalwrap .total').html(currentsumuser2);	
+
+	var data = {
+	"action": "calc"
+	};
+	data = $(this).serialize({ checkboxesAsBools: true })+"&lang=en&created=1607243249&changed=1607243249&p=3&o=none&name=europe&pn="+pn+"&"+$.param(data);
+	console.log(data);
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		data: data,
+		success: function(data) {
+			
+			$('#loader').hide();
+			
+			var obj = data;
+			
+			$(".rev").val(obj.rev);
+			var rev = obj.rev;
+			console.log('new rev:'+rev);
+			
+			var h = obj.h;
+			console.log('returned solutions: '+h);
+			unsaved = false;
+			$( ".initialwarning" ).remove();
+			$( ".initialresult" ).remove();
+			$( ".changed" ).remove();
+			$( ".sharebox" ).remove();
+			$( ".ergi" ).remove();
+			$("#thebutton").css("visibility","visible");
+			$( ".savediv" ).remove();
+			$( ".savediv2wrap" ).remove();
+			$( ".rev" ).remove();
+			$( ".iddd" ).remove();
+			$('.calc').append('<input type="hidden" class="rev" value="' + obj['rev'] +'" name="_rev" />');
+			$('.calc').append('<input type="hidden" class="iddd" value="' + obj['id'] +'" name="_id" />');
+			$('<div class="savediv"><span class="save">Saved.  my/' + obj['id']+'</span></div>').appendTo($('#headers')).hide().fadeIn();
+			
+			if (h == 0) {
+			$('.the-return').append('<div class="initialwarning">No results to display, your group is even or there is no data</div>');
+			}
+			
+			for (i = 0; i < h; i++) {
+			$('.the-return').append('<div class="ergi"><div class="deb">'+ obj[i]['deb'] + '</div><div class="pfeil"><div class="pfeilanfang">'+ obj[i]['zb'] + '</div><div class="pfeilspitze"></div></div><div class="cred">'+ obj[i]['cred'] + '</div></div>');	
+				}
+			if (obj['error'] != "none") {
+			$('.the-return').append('<div class="error"><span class="webfontbig">&#0092;</span> '+ obj['error'] +'</div>')
+			}
+				
+			$("#thebutton").attr('class', 'btn btn-hg btn-success');
+			$("#thebutton").attr('value', 'Who pays whom how much:');
+			$('.the-return').append('<div class="sharebox">Use this link to share or edit with your friends:  <input class="form-control" id="shareurl" size="52" type="text" value="splitmoney/my/' + obj['id'] +'"/><br /><input title="Copied!" class="tooltypcopy btn btn-hg btn-info" value="Copy!" type="button" id="my-button" data-clipboard-text=' + obj['id'] +'">  or <div class="shariff"></div><div class="clearfix"></div></div>');
+		    var buttonsContainer = $('.shariff');
+		    new Shariff(buttonsContainer, {
+					theme:'standard',
+					orientation:'horizontal',
+					buttonStyle:'icon',
+					lang:'en',
+					title:'billzer europe'
+				});
+			sticky_relocate();
+			sticky_relocatesave();
+		    $('.tooltypcopy').tooltipster({
+						animation: 'grow',
+						timer: 3000,
+						theme: 'tooltipster-shadow',
+						maxWidth: 150,
+						touchDevices: false,
+						offsetY: -20,
+						trigger: 'click'
+				});
+			var client2 = new ZeroClipboard( $('#my-button') );
+			},
+			timeout: 10000,
+			error: function(statusCode, errorThrown) {
+			$('#loader').hide();
+			$( ".error" ).remove();
+			$( ".initialwarning" ).remove();
+			$( ".initialresult" ).remove();
+			$( ".changed" ).remove();
+			$( ".sharebox" ).remove();
+			$( ".savediv" ).remove();
+			$( ".ergi" ).remove();
+			$('.the-return').append('<div class="error"><span class="webfontbig">&#0092;</span> Error. This can have two reasons: Either your Internet connection is not available or somebody else made changes to the calculation in the meantime before you have hit calculate. In this case simply reload the page to get the newest version. However your changes are lost and you have to enter them again. We are sorry for the inconvenience!<br /></div>');
+			}
+			});	
+		return false;
+	});
+	
+        $(document).on('click', '.remScntuser0, .remScntuser1, .remScntuser2', function() { 
+                
+			var id = $(this).attr('id');
+			var scntDiv = "." + id.substring(id.indexOf("u"));
+			var numItems = $(scntDiv +' .inputwrap').length;
+			if (numItems > 1) {
+						$(scntDiv +' #p' + id).remove();
+						$(scntDiv +' #w' + id).remove();
+						$(scntDiv +' #' + id).remove();
+			}
+			else {
+			      alert("You can not delete all input fields of a person. If that person had no expenses for the group, leave it to 0");	
+			}
+		var currentsum = $(scntDiv+' input.price').sumValues();
+		$(scntDiv+' .totalwrap .total').val(currentsum);
+		$(scntDiv+' .totalwrap .total').html(currentsum);
+	
+                return false;
+        });
+	
+	
+	 $(document).on('click', '.checktoggle, .checktoggleactive', function() { 
+                
+			var id = $(this).attr('id');
+			var scntDiv = "." + id.substring(id.indexOf("u"));
+						$(scntDiv +' #e' + id).toggle();
+						$(scntDiv +' #' + id).toggleClass('checktoggle checktoggleactive');
+	
+                return false;
+        });
+	
+
+	 $(document).on('click', '.checkbox', function() { 
+	if ($(this).hasClass('checked')) {
+		if ($(this).closest('.checks').children().not('.checked').length == 0) {
+			$(this).closest('.inputwrap').find('.checktoggleactive').removeClass('checktoggledone');
+		}
+	}
+	else {
+		$(this).closest('.inputwrap').find('.checktoggleactive').addClass('checktoggledone');
+	}
+        });
+	
+(function( $ ){
+   $.fn.savebutton = function() {
+      $('.calc').submit();
+      alert("Saved. Result is at the bottom.  Use this link to share or edit with your friends:  /my/7af5be439f89f6e66edeb51dc7616247 ");
+      return this;
+   }; 
+})( jQuery );
+
+});
+
+
+
+function unloadPage(){ 
+    if(unsaved){
+        return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+}
+
+window.onbeforeunload = unloadPage;	
+
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_right = ($(window).width() - ($('#subwrap').offset().left + $('#subwrap').outerWidth()));
+    	var div_height = $('#subwrap').height();
+	var view_height = $( window ).height();
+	var headerheight = $('#headers').height();
+	var tourstartheight = $('#tourstart').height();
+	var bottomheight = $('#bottom').height();
+	var totalheight = bottomheight+tourstartheight+headerheight;
+	var coolheight = view_height-totalheight;
+    if (div_height<coolheight) {
+	if (window_top > div_top) {
+	$('#subwrap').addClass('stick');
+	$('#subwrap').css('right',div_right);
+	}  else {
+        $('#subwrap').removeClass('stick');
+    }   
+    } else {
+        $('#subwrap').removeClass('stick');
+    }
+}
+ 
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+
+
+function sticky_relocatesave() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#sticky-anchor2').offset().top;
+	
+	if (window_top > div_top) {
+	$('.savediv2wrap').addClass('stick');
+	}  else {
+        $('.savediv2wrap').removeClass('stick');
+    }
+}
+
+ 
+$(function () {
+    $(window).scroll(sticky_relocatesave);
+    sticky_relocatesave();
+});
+
+
+
+	
+});
+
+
+</script>
+<link href="https://billzer.com/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="https://billzer.com/css/flat-ui.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://billzer.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="https://billzer.com/css/joyride-2.1.css">
+<script src="https://billzer.com/js/jquery.joyride-2.1.js"></script>
+<script type="text/javascript" src="https://billzer.com/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://billzer.com/js/modernizr.mq.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://billzer.com/css/tooltipster.css" />
+ <link rel="stylesheet" type="text/css" href="https://billzer.com/css/themes/tooltipster-light.css" />
+  <link rel="stylesheet" type="text/css" href="https://billzer.com/css/themes/tooltipster-shadow.css" />
+ <script type="text/javascript" src="https://billzer.com/js/jquery.tooltipster.min.js"></script>
+<link href="https://billzer.com/style.css?v=1527233455" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<script type="text/javascript">var switchTo5x=true;</script>
+
+<STYLE type="text/css">
+@media screen and (min-width: 47.5em ) {
+#facebookwrap {
+	position: fixed;
+	right: 5px;
+	bottom: 1px;
+	height: 32px;
+}
+}
+</STYLE>
+</head>
+
+<body>
+<script>
+   var gaProperty = 'UA-55249825-1'; 
+   var disableStr = 'ga-disable-' + gaProperty; 
+   if (document.cookie.indexOf(disableStr + '=true') > -1) { 
+        window[disableStr] = true;
+    } 
+    function gaOptout() { 
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; 
+        window[disableStr] = true; 
+        alert('Das Tracking ist jetzt deaktiviert'); 
+   } 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55249825-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript" src="https://billzer.com/ZeroClipboard.js"></script>
+
+<div id="headers"><a href="index.html"><div id="new"><i class="icon-doc-new"></i><br />New</div></a><div id="logos"></div><a href="../welcome.php" onClick="$('#savebutton').savebutton()"><div id="savebutton"><i class="icon-floppy"></i><br />Save</div></a><div id="occasion">europe</div><div id="sticky-anchor2"></div></div>
+<div class="wrap">
+<div class="container" id="container">
+<div class="usermegawrap">
+<form name="calc" class="calc" method="post" accept-charset="utf-8" novalidate autocomplete="off">
+<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+<div class="userwrap">
+<div class="user0">
+<div class="namewrap"><div class="input-group">
+<span class="input-group-addon"><span class="input-icon fui-user"></span></span> <input id="nuser0" class="form-control name" type="text" name="n0" value="Name 1" onfocus="(this.value == 'Name 1') && (this.value = '')" onblur="(this.value == '') && (this.value = 'Name 1')" /></div></div>
+<div class="totalwrap"><i class="icon-tag"></i><span class="total">0</span><input type="hidden" name="xuser0" class="total"></div>
+<div class="inputwrap" id="0user0">
+	<div class="waswrap"><input name="w0user0" type="text" class="form-control was" id="w0user0" placeholder="What?" /></div>
+	<div class="pricewrap"><input type="number" min="0" step="0.01" name="p0user0" id="p0user0" class="form-control price" placeholder="How much?"/></div>
+	<a href="#"><div id="0user0" class="minus remScntuser0">&#195;</div></a>
+	<a href="#"><div id="ct0user0" class="checktoggle tooltyp" title="Click here to exclude persons from this expense.">&#161;</div></a>
+	<div class="checks" id="ect0user0">
+	Who shares this expense?<label class="checkbox" for="c0v0user0"><input type="checkbox" checked id="c0v0user0" name="c0v0user0" data-toggle="checkbox"><span class="labeln0"><i>Name 1</i></span></label><label class="checkbox" for="c0v1user0"><input type="checkbox" checked id="c0v1user0" name="c0v1user0" data-toggle="checkbox"><span class="labeln1"><i>Name 2</i></span></label><label class="checkbox" for="c0v2user0"><input type="checkbox" checked id="c0v2user0" name="c0v2user0" data-toggle="checkbox"><span class="labeln2"><i>Name 3</i></span></label></div>
+</div>
+
+  
+  <div class="bef"></div>
+  <a href="#"><div class="pluswrap"><div class="plus" id="addScntuser0">&#192;<span class="normal"> more</span></div></div></a>
+
+</div>
+<div class="clearfix"></div>
+</div><div class="userwrap">
+<div class="user1">
+<div class="namewrap"><div class="input-group">
+<span class="input-group-addon"><span class="input-icon fui-user"></span></span> <input id="nuser1" class="form-control name" type="text" name="n1" value="Name 2" onfocus="(this.value == 'Name 2') && (this.value = '')" onblur="(this.value == '') && (this.value = 'Name 2')" /></div></div>
+<div class="totalwrap"><i class="icon-tag"></i><span class="total">0</span><input type="hidden" name="xuser1" class="total"></div>
+<div class="inputwrap" id="0user1">
+	<div class="waswrap"><input name="w0user1" type="text" class="form-control was" id="w0user1" placeholder="What?" /></div>
+	<div class="pricewrap"><input type="number" min="0" step="0.01" name="p0user1" id="p0user1" class="form-control price" placeholder="How much?"/></div>
+	<a href="#"><div id="0user1" class="minus remScntuser1">&#195;</div></a>
+	<a href="#"><div id="ct0user1" class="checktoggle tooltyp" title="Click here to exclude persons from this expense.">&#161;</div></a>
+	<div class="checks" id="ect0user1">
+	Who shares this expense?<label class="checkbox" for="c0v0user1"><input type="checkbox" checked id="c0v0user1" name="c0v0user1" data-toggle="checkbox"><span class="labeln0"><i>Name 1</i></span></label><label class="checkbox" for="c0v1user1"><input type="checkbox" checked id="c0v1user1" name="c0v1user1" data-toggle="checkbox"><span class="labeln1"><i>Name 2</i></span></label><label class="checkbox" for="c0v2user1"><input type="checkbox" checked id="c0v2user1" name="c0v2user1" data-toggle="checkbox"><span class="labeln2"><i>Name 3</i></span></label></div>
+</div>
+
+  
+  <div class="bef"></div>
+  <a href="#"><div class="pluswrap"><div class="plus" id="addScntuser1">&#192;<span class="normal"> more</span></div></div></a>
+
+</div>
+<div class="clearfix"></div>
+</div><div class="userwrap">
+<div class="user2">
+<div class="namewrap"><div class="input-group">
+<span class="input-group-addon"><span class="input-icon fui-user"></span></span> <input id="nuser2" class="form-control name" type="text" name="n2" value="Name 3" onfocus="(this.value == 'Name 3') && (this.value = '')" onblur="(this.value == '') && (this.value = 'Name 3')" /></div></div>
+<div class="totalwrap"><i class="icon-tag"></i><span class="total">0</span><input type="hidden" name="xuser2" class="total"></div>
+<div class="inputwrap" id="0user2">
+	<div class="waswrap"><input name="w0user2" type="text" class="form-control was" id="w0user2" placeholder="What?" /></div>
+	<div class="pricewrap"><input type="number" min="0" step="0.01" name="p0user2" id="p0user2" class="form-control price" placeholder="How much?"/></div>
+	<a href="#"><div id="0user2" class="minus remScntuser2">&#195;</div></a>
+	<a href="#"><div id="ct0user2" class="checktoggle tooltyp" title="Click here to exclude persons from this expense.">&#161;</div></a>
+	<div class="checks" id="ect0user2">
+	Who shares this expense?<label class="checkbox" for="c0v0user2"><input type="checkbox" checked id="c0v0user2" name="c0v0user2" data-toggle="checkbox"><span class="labeln0"><i>Name 1</i></span></label><label class="checkbox" for="c0v1user2"><input type="checkbox" checked id="c0v1user2" name="c0v1user2" data-toggle="checkbox"><span class="labeln1"><i>Name 2</i></span></label><label class="checkbox" for="c0v2user2"><input type="checkbox" checked id="c0v2user2" name="c0v2user2" data-toggle="checkbox"><span class="labeln2"><i>Name 3</i></span></label></div>
+</div>
+
+  
+  <div class="bef"></div>
+  <a href="#"><div class="pluswrap"><div class="plus" id="addScntuser2">&#192;<span class="normal"> more</span></div></div></a>
+
+</div>
+<div class="clearfix"></div>
+</div>
+<br /><div id="sure"><br /></div>
+
+
+<input type="hidden" value="" name="teil" />
+<input type="hidden" class="rev" value="1-f97f74c413bcb3d5b5f7694a3f2d44c5" name="_rev" /><input type="hidden" class="iddd" value="7af5be439f89f6e66edeb51dc7616247" name="_id" />
+
+</form>
+</div>
+<div id="sticky-anchor"></div>
+<div id="subwrap">
+<div id="submitbutton">
+<input type="submit" onClick="$('.calc').submit();" class="btn btn-hg btn-success" id="thebutton" value="Change some data"  />
+<div id="loader"><img src="https://billzer.com/ajax-loader.gif" alt="loader"/></div>
+</div>
+</body>
+</html>

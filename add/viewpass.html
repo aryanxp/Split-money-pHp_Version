@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<link rel="alternate" hreflang="x-default" href="index.html" />
+<link rel="alternate" hreflang="en" href="en.html" />
+<link rel="alternate" hreflang="de" href="de.html" />
+<link rel="alternate" hreflang="it" href="it.html" />
+<title>MoneySplit</title>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style type="text/css">
+	body{ font: 14px sans-serif; text-align: center; }
+	.section-nav {
+		padding-bottom: 0;
+		border-radius: none;
+		box-shadow: none;
+		background-color: #141c31;
+		flex 0 0 50px;
+	}
+    .section-first.no-margin {
+    margin-top: 0;
+    }
+</style>
+    <script type="text/javascript">
+	function change(what){
+	$('#scroll').fadeOut();
+	var current = document.getElementById("count").value;
+	var current = parseInt(current);
+	if(what == "u"){
+		if (current > 1 && current < 40) {
+		var neu = current+1;
+		document.getElementById("count").value= neu;
+		}
+		}
+	else {
+		if (current > 2 && current < 41) {
+		var neu = (current)-1;
+		document.getElementById("count").value= neu;
+		}
+		}
+	}
+	$(document).on('focus', '#text', function() {
+		$('#scroll').fadeOut();
+	});
+	$(window).scroll(function() {
+
+		if ($(this).scrollTop()>0)
+		{
+			$('#scroll').fadeOut();
+		}
+		
+	});
+	$("document").ready(function(){
+
+		$(document).on('click', '.cookieclose', function() {
+		$('#cookiestart').remove();
+			});
+
+	$("select").selectpicker({style: 'btn-hg btn-info', menuStyle: 'dropdown-inverse'});
+
+	$.fn.pressEnter = function(func) {
+		this.bind('keypress', function(e) {
+			if(e.keyCode === 13) {
+				func.apply(this, [e]);
+			}
+		});
+		return this;
+	};
+
+	$('input[type="text"]').pressEnter(function(e) {
+		e.preventDefault();
+		$('.action').submit();
+	});
+
+	});
+	</script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+	<link href="stylefba0.css?v=1527233455" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/customfont.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<div class="page-header section-nav row">
+<h1><strong>Passbook</strong></h1>
+</div>
+<script>
+   var gaProperty = 'UA-55249825-1'; 
+   var disableStr = 'ga-disable-' + gaProperty; 
+   if (document.cookie.indexOf(disableStr + '=true') > -1) { 
+        window[disableStr] = true;
+    } 
+    function gaOptout() { 
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; 
+        window[disableStr] = true; 
+        alert('Das Tracking ist jetzt deaktiviert'); 
+   } 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55249825-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+
+</script>
+<div class="section section-first section-entries section-last no-margin">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Expenses</h2>
+        <div class="entry-filter btn-group mt-1" role="group" aria-label="...">
+          <button type="button" class="entry-filter-all btn btn-default active" ga-on="click" ga-event-category="UI" ga-event-action="entry filter" ga-event-label="all">All</button>
+          <button type="button" class="entry-filter-yours btn btn-default" ga-on="click" ga-event-category="UI" ga-event-action="entry filter" ga-event-label="yours">Yours</button>
+          <button type="button" class="entry-filter-others btn btn-default" ga-on="click" ga-event-category="UI" ga-event-action="entry filter" ga-event-label="others">Others</button>
+        </div>
+          <a href="/dinnear/dXdaSTrhhh8myuTP4wrjlK_c4DEIYcEQ-2/entries/new/expense?back_to=entries" id="add-entry" class="pull-right btn btn-md btn-secondary mt-1" ga-on="click" ga-event-category="UI" ga-event-action="add entry" ga-event-label="entries page">
+Add          </a>
+      </div>
+      <div class="col-xs-12">
+          <!-- google_ad_section_start -->
+          <ul class="entries list-unstyled">
+              
+                <li class="entry-list-item list-item entry-all entry-yours">
+                
+<a class="entry-link" href="/dinnear/dXdaSTrhhh8myuTP4wrjlK_c4DEIYcEQ-2/entries/4987544/edit">                    
+<div class="row">
+  <div class="col-xs-12">
+aryan paid <span class="currency"><span class="currency-symbol">$</span>1,000.00</span> for ber  </div>
+</div>
+<div class="row">
+  <div class="entry-meta col-xs-12">
+      <span class="entry-label entry-label-parties">
+        People involved: <span class="entry-parties">everyone</span>.
+      </span>
+    
+      <span class="entry-label entry-label-date">
+12/06/2020      </span>
+      <span class="entry-label entry-label-share accent-color-primary">Your share: <span class="currency"><span class="currency-symbol">$</span>500.00</span></span>
+  </div>
+</div>
+</a>     
+              </li>
+                  <li class="entry-list-item entry-all">
+                    <div class="row">
+                      <div class="col-xs-12">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

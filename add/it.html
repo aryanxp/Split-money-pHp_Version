@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from billzer.com/it by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Dec 2020 07:56:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="alternate" hreflang="x-default" href="index.html" />
+<link rel="alternate" hreflang="en" href="en.html" />
+<link rel="alternate" hreflang="de" href="de.html" />
+<link rel="alternate" hreflang="it" href="it.html" />
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="index.html"/>
+<meta property="og:title" content="billzer.com – Spese in comune da dividere in un gruppo"/>
+<meta property="og:image" content="logosuper.png"/>
+<meta property="og:description" content="Indica chi deve pagare quanto a chi." />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:locale:alternate" content="en_US" /><meta property="og:locale:alternate" content="de_DE" /> 
+<meta property="og:site_name" content="billzer" />
+<meta property="fb:app_id" content="1546057258948948" />
+
+<meta name="description" content="Indica chi deve pagare quanto a chi." />
+<meta name="keywords" content="wer zahlt an wen, gruppenausgabe, gruppenreise, trip, gemeinsame ausgabe, zurückzahlen, kosten aufteilen, settle debts, shared expenses, shared costs, Group spendings, Calculate transactions, Who owes whom how much, Who pay whom how much, IOU, pay back debts, share bills, Balance, Split costs with friends, calculator, uneven splits" />
+<meta name="robots" content="index,follow" />
+
+<title>billzer.com – Spese in comune da dividere in un gruppo</title>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+function change(what){
+$('#scroll').fadeOut();
+var current = document.getElementById("count").value;
+var current = parseInt(current);
+if(what == "u"){
+	if (current > 1 && current < 40) {
+	var neu = current+1;
+	document.getElementById("count").value= neu;
+	}
+	}
+else {
+	if (current > 2 && current < 41) {
+	var neu = (current)-1;
+	document.getElementById("count").value= neu;
+	}
+	}
+}
+ $(document).on('focus', '#text', function() {
+	$('#scroll').fadeOut();
+ });
+$(window).scroll(function() {
+
+    if ($(this).scrollTop()>0)
+     {
+        $('#scroll').fadeOut();
+     }
+     
+});
+$("document").ready(function(){
+
+	 $(document).on('click', '.cookieclose', function() {
+	$('#cookiestart').remove();
+        });
+
+$("select").selectpicker({style: 'btn-hg btn-info', menuStyle: 'dropdown-inverse'});
+
+$.fn.pressEnter = function(func) {
+    this.bind('keypress', function(e) {
+        if(e.keyCode === 13) {
+            func.apply(this, [e]);
+        }
+    });
+    return this;
+};
+
+$('input[type="text"]').pressEnter(function(e) {
+    e.preventDefault();
+    $('.action').submit();
+});
+
+
+});
+</script>
+
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+
+    
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="https://billzer.com/js/html5shiv.js"></script>
+      <script src="https://billzer.com/js/respond.min.js"></script>
+    <![endif]--><link href="stylefba0.css?v=1527233455" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/customfont.css">
+<link rel="shortcut icon" href="favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<script>
+   var gaProperty = 'UA-55249825-1'; 
+   var disableStr = 'ga-disable-' + gaProperty; 
+   if (document.cookie.indexOf(disableStr + '=true') > -1) { 
+        window[disableStr] = true;
+    } 
+    function gaOptout() { 
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; 
+        window[disableStr] = true; 
+        alert('Das Tracking ist jetzt deaktiviert'); 
+   } 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55249825-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+
+</script><div id="wrap">
+<div class="container" id="container">
+<div id="logobig"></div>
+<div id="claim"><h1>Spese in comune  da dividere in un gruppo. <br />Indica chi deve pagare quanto a chi.</h1></div>
+<div id="startform">
+	<form class="action" name="action" action="https://billzer.com/go.php" method="post">
+		<div id="tops"><a href="my/example/index.html"><div class="topcall"><i class="icon-question"></i> Visualizza un esempio</div></a>
+		oppure		</div>
+		<a name="top"></a><a href="#top"><div class="topcallstart"><i class="icon-doc-new"></i> Inizia nuovo calcolo</div></a>
+		<div id="gobox">
+			Di quante persone è il gruppo?<br />
+			<div id="countw">
+				<div id="down">
+				<input value="-" type="button" onclick="change('d')" class="btn btn-hg btn-info"/>
+				</div>
+				<div id="countw2">
+					<div class="form-group">
+						<div class="input-group">
+						<span class="input-group-addon"><span class="input-icon fui-user"></span></span> <input type="number" min="2" max="40" step="1" name="p" value="3" id="count" class="form-control input-hg">
+				</div></div></div>
+				<div id="up">
+				<input value="+" type="button" onclick="change('u')" class="btn btn-hg btn-info"/>
+				</div>
+			<span class="hint">persone che possono essere escluse da singole spese sostenute</span>
+			</div>
+			<input type="hidden" value="none" name="o" />
+			<br />
+			Dai un nome al calcolo!			<br />
+			<input maxlength="40" type="text" id="text" name="name" placeholder="per esempio vacanza Spagna" class="form-control"/>
+			<br />
+			
+			<input value="Avanti!" id="go" class="btn btn-hg btn-success" type="submit">
+			</div></form>
+</div><!-- /#startform -->
+<div id="facebookwrap"></div>
+<div class="breaker"></div>
+<div id="how"><h2>Che cosa fa billzer?</h2>
+<div id="howpic"></div>
+<div id="howtext"><p>Dopo che hai immesso i nomi e i dati di tutti le persone, billzer calcola chi deve pagare quanto a chi per equilibrare le spese tra i membri del gruppo. 
+<br />È anche possibile escludere alcune spese dalla divisione comune.</p>
+</div>
+</div>
+
+<div class="breaker"></div>
+<div id="threer">
+	<h2>È bene sapere...</h2>
+	<div class="col">
+		<div class="colimage"><img src="images/icons/svg/gift-box.svg" width="100px" height="100px" alt="a gift box"/></div>
+		<div class="coltext">È gratuito.<br /><br /> È facile.</div>
+	</div>
+	<div class="col">
+		<div class="colimage"><img src="images/icons/svg/clipboard.svg" width="100px" height="100px" alt="a clipboard" /></div>
+		<div class="coltext">Nessuna registrazione. <br /><br />Nessun download.</div>
+	</div>
+	<div class="col">
+		<div class="colimage"><img src="images/icons/svg/pencils.svg" width="100px" height="100px" alt="pencils" /></div>
+		<div class="coltext">Dividi il risultato. <br /><br />Continua più tardi.</div>
+	</div>
+</div>
+<div class="breaker"></div>
+<div id="expl"><h2>Perché questo sito?</h2>
+<div id="expllong"><p>Dopo gite in comitiva, eventi o viaggi spesso le spese di un gruppo devono essere  divise in modo equo.
+Continuamente si pone il problema dei calcoli...Chi deve pagare quanto a chi? Inoltre se una spesa non deve essere
+divisa da tutti i membri del gruppo (per esempio un amico che non ha partecipato alla visita al museo) ciò diventa
+più complicato.
+<br /><br />
+
+billzer.com offre la possibilità semplice, gratuita e attendibile per dividere le spese di un gruppo in caso di viaggi, feste, regali, festival, roadtrips, nozze, associazioni o appartamenti condivisi. 
+<br /><br />
+Tutto succede nel browser, non devi né registrarti né installare un´ app. 
+L´algoritmo magico di billzer calcola esattamente chi deve pagare quanto a chi. 
+<br /><br />
+È il nostro obiettivo quello di risparmiare tempo e stress per gruppi con spese in comune, quando il viaggio o l´evento sono conclusi.</p>
+</div><br />
+<a href="#top"><div id="bottomcall">Avanti!</div></a>
+</div>
+
+
+
+
+
+
+
+<div id="scroll"><span class="webfontbig">&#203;</span>Più informazioni</div>
+
+</div><!-- /.container -->
+</div><!-- /#wrap -->
+
+<div id="bottom"><a href="it/page/about/index.html">di</a> - <a href="it/page/terms/index.html" rel="nofollow">condizioni d´uso & informativa sulla privacy</a> - <a href="it/page/impress/index.html" rel="nofollow">sito editor</a></div>
+<div id="cookiestart"><div class="cookielink">Utilizziamo i cookie per garantire il miglior servizio. Se si continua a utilizzare il sito, si accetta il nostro <a href='it/page/terms.html'>Cookie-politica</a>. &#160;&#160;&#160; <a href='#'><span class='cookieclose'>Chiudere <span class='webfont'>&#204;</span></span></a> </div></div>
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+</body>
+
+<!-- Mirrored from billzer.com/it by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Dec 2020 07:56:24 GMT -->
+</html>
