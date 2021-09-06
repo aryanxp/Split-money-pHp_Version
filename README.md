@@ -1,8 +1,20 @@
-# WHAT IS SPLIT-MONEY?
+# SPLIT-MONEY
 
-It is an application which let's you split money among your group members when you go somewhere out and
-also maintains a passbook for how much money you have to take from whom and how much you owe them.
+**Go Dutch** with your friends so that you remember the moments and not who owes how much.
 
+Here are some screen shot of the working of the website : 
+
+## Login & SignUp & Reset password
+![Login](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/login.png)
+![SignUp](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/signup.png)
+![Reset](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/reset.png)
+## Welcome page
+![Welcome](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/welcome.png)
+## Main Page
+![Split](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/split.png)
+![Split-app](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/split-app.png)
+## Passbook
+![Passbook](https://raw.githubusercontent.com/aryanxp/Split-money/master/ss/passbook.png)
 
 # Split-money-pHp_Version
 Fully developed (backend+frontend)website built only with PHP (and also a little of HTML).
